@@ -1,0 +1,66 @@
+# =============================================================================
+# BOOTCAMP: C++ Zero to Hero
+# =============================================================================
+
+# ⚠️ POLÍTICA ANTICOPIA — Soluciones del instructor (NUNCA subir)
+**/solution/
+
+# =============================================================================
+# BUILD (CMake, Ninja, compiladores)
+# =============================================================================
+build/
+build-*/
+cmake-build-*/
+out/
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+compile_commands.json
+Testing/
+_deps/
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.gch
+*.pch
+
+# Sanitizers, profiling, fuzzing
+*.profraw
+*.profdata
+*.gcda
+*.gcno
+perf.data*
+crash-*
+leak-*
+timeout-*
+fuzz-*.log
+corpus/
+
+# =============================================================================
+# EDITORES Y SISTEMA
+# =============================================================================
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+.cache/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# =============================================================================
+# EXPORTS Y TEMPORALES
+# =============================================================================
+_pdf/
+*.pdf
+_exports/
+tmp/
+*.log

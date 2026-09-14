@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200"
+     role="img" aria-labelledby="btitle bdesc">
+  <title id="btitle">Bootcamp C++ Zero to Hero</title>
+  <desc id="bdesc">Banner: Bootcamp C++ Zero to Hero — 20 semanas, 200 horas, C++20, CMake, Catch2; a la derecha, una terminal con el pipeline de compilación y tests en verde</desc>
+
+  <!-- Fondo -->
+  <rect width="800" height="200" fill="#0d1117"/>
+
+  <!-- Barra de acento izquierda -->
+  <rect x="0" y="0" width="4" height="200" fill="#659ad2"/>
+
+  <!-- Hexágono de fondo sutil (logo ISO C++) -->
+  <polygon points="200,15 273.6,57.5 273.6,142.5 200,185 126.4,142.5 126.4,57.5"
+           fill="#659ad2" fill-opacity="0.04"
+           stroke="#659ad2" stroke-width="1.5" stroke-opacity="0.1"/>
+
+  <!-- ═══════════ SECCIÓN IZQUIERDA ═══════════ -->
+
+  <!-- Label: BOOTCAMP -->
+  <text x="28" y="44"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="11" font-weight="600" letter-spacing="4"
+        fill="#484f58">BOOTCAMP</text>
+
+  <!-- Título principal: C++ -->
+  <text x="28" y="106"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="58" font-weight="700">
+    <tspan fill="#f0f6fc">C</tspan><tspan fill="#659ad2">++</tspan><tspan fill="#484f58" font-size="28" font-weight="500" dx="10">20</tspan>
+  </text>
+
+  <!-- Subtítulo: Zero to Hero -->
+  <text x="28" y="134"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="17" font-weight="400"
+        fill="#8b949e">Zero to Hero</text>
+
+  <!-- Chip: 20 semanas -->
+  <rect x="28" y="152" width="84" height="20" rx="4"
+        fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="70" y="166"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="500"
+        fill="#8b949e" text-anchor="middle">20 semanas</text>
+
+  <!-- Chip: 200 horas -->
+  <rect x="118" y="152" width="74" height="20" rx="4"
+        fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="155" y="166"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="500"
+        fill="#8b949e" text-anchor="middle">200 horas</text>
+
+  <!-- Chip: CMake 3.28 -->
+  <rect x="198" y="152" width="80" height="20" rx="4"
+        fill="#0a1929" stroke="#659ad2" stroke-width="1"/>
+  <text x="238" y="166"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="600"
+        fill="#659ad2" text-anchor="middle">CMake 3.28</text>
+
+  <!-- Chip: Catch2 -->
+  <rect x="284" y="152" width="70" height="20" rx="4"
+        fill="#0d2310" stroke="#3fb950" stroke-width="1"/>
+  <text x="319" y="166"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="600"
+        fill="#3fb950" text-anchor="middle">Catch2 v3</text>
+
+  <!-- Divisor vertical -->
+  <line x1="400" y1="20" x2="400" y2="180" stroke="#21262d" stroke-width="1"/>
+
+  <!-- ═══════════ SECCIÓN DERECHA: Terminal ═══════════ -->
+
+  <!-- Caja terminal -->
+  <rect x="416" y="22" width="360" height="156" rx="8"
+        fill="#161b22" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Barra superior terminal -->
+  <rect x="417" y="23" width="358" height="27" rx="7" fill="#21262d"/>
+  <rect x="417" y="38" width="358" height="12" fill="#21262d"/>
+
+  <!-- Dots -->
+  <circle cx="437" cy="36" r="5" fill="#f85149"/>
+  <circle cx="455" cy="36" r="5" fill="#d29922"/>
+  <circle cx="473" cy="36" r="5" fill="#3fb950"/>
+
+  <!-- Título de la terminal -->
+  <text x="596" y="41"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="11" fill="#484f58" text-anchor="middle">build · test · sanitize</text>
+
+  <!-- Divisor barra/contenido -->
+  <line x1="416" y1="50" x2="776" y2="50" stroke="#30363d" stroke-width="1"/>
+
+  <!-- $ cmake --preset asan -->
+  <text x="432" y="72"
+        font-family="ui-monospace,Consolas,monospace"
+        font-size="12" fill="#8b949e"><tspan fill="#659ad2">$</tspan> cmake --preset asan</text>
+  <text x="766" y="72"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="500"
+        fill="#3fb950" text-anchor="end">configured</text>
+
+  <!-- $ cmake --build -->
+  <text x="432" y="94"
+        font-family="ui-monospace,Consolas,monospace"
+        font-size="12" fill="#8b949e"><tspan fill="#659ad2">$</tspan> cmake --build --preset asan</text>
+  <text x="766" y="94"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="500"
+        fill="#3fb950" text-anchor="end">0 warnings</text>
+
+  <!-- $ ctest -->
+  <text x="432" y="116"
+        font-family="ui-monospace,Consolas,monospace"
+        font-size="12" fill="#8b949e"><tspan fill="#659ad2">$</tspan> ctest --preset asan</text>
+  <text x="766" y="116"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="500"
+        fill="#3fb950" text-anchor="end">100% passed</text>
+
+  <!-- sanitizers -->
+  <text x="432" y="138"
+        font-family="ui-monospace,Consolas,monospace"
+        font-size="12" fill="#8b949e">ASan · UBSan · TSan</text>
+  <text x="766" y="138"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="10" font-weight="500"
+        fill="#3fb950" text-anchor="end">0 reports</text>
+
+  <!-- Footer terminal -->
+  <line x1="416" y1="154" x2="776" y2="154" stroke="#21262d" stroke-width="1"/>
+  <text x="596" y="167"
+        font-family="ui-monospace,Consolas,monospace"
+        font-size="10" fill="#484f58" text-anchor="middle">RAII · templates · STL · threads · coroutines · Asio</text>
+
+  <!-- Línea inferior del banner -->
+  <line x1="4" y1="199" x2="800" y2="199" stroke="#21262d" stroke-width="1"/>
+
+</svg>

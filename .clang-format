@@ -1,0 +1,28 @@
+# Estilo del bootcamp C++ Zero to Hero. Base Google con dos ajustes:
+# columna 100 (los ejemplos con comentarios en español no caben en 80) y
+# punteros/referencias pegados al tipo (int* p, const std::string& s).
+BasedOnStyle: Google
+Standard: c++20
+ColumnLimit: 100
+IndentWidth: 2
+PointerAlignment: Left
+ReferenceAlignment: Left
+DerivePointerAlignment: false
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+IncludeBlocks: Regroup
+IncludeCategories:
+  # 1. Header propio del .cpp (main include) lo detecta clang-format solo.
+  # 2. Headers del proyecto entre comillas.
+  - Regex: '^"'
+    Priority: 1
+  # 3. Terceros (Catch2, asio, benchmark, nlohmann).
+  - Regex: '^<(catch2|asio|benchmark|nlohmann)/'
+    Priority: 2
+  # 4. Estándar.
+  - Regex: '^<[a-z_]+>'
+    Priority: 3
+  # 5. POSIX y sistema (<sys/...>, <netinet/...>).
+  - Regex: '^<.*\.h>|^<sys/|^<netinet/|^<arpa/'
+    Priority: 4

@@ -1,0 +1,31 @@
+{
+  // Extensiones recomendadas para el Bootcamp C++ Zero to Hero
+  // Criterio: publisher verificado en VS Code Marketplace y open-source auditable.
+  "recommendations": [
+    // ─── C++ ─────────────────────────────────────────────────────────────────
+    // Publisher: Microsoft ✓ — IntelliSense, debug con gdb, formato con clang-format
+    "ms-vscode.cpptools",
+    // Publisher: LLVM ✓ — alternativa a cpptools basada en clangd (más precisa con C++20)
+    "llvm-vs-code-extensions.vscode-clangd",
+
+    // ─── CMake ───────────────────────────────────────────────────────────────
+    // Publisher: Microsoft ✓ — presets, build y ctest desde la barra de estado
+    "ms-vscode.cmake-tools",
+    // Publisher: twxs — sintaxis de CMakeLists.txt
+    "twxs.cmake",
+
+    // ─── Git ─────────────────────────────────────────────────────────────────
+    // Publisher: GitKraken ✓
+    "eamodio.gitlens",
+
+    // ─── Markdown y SVG ──────────────────────────────────────────────────────
+    // Publisher: David Anson ✓ — lint de markdown
+    "davidanson.vscode-markdownlint",
+    // Publisher: Jock ✓ — previsualizar los SVG de 0-assets/
+    "jock.svg",
+
+    // ─── Ambiente ────────────────────────────────────────────────────────────
+    // Publisher: John Papa ✓ — color del workspace (settings.json ya lo fija)
+    "johnpapa.vscode-peacock"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "peacock.color": "#659AD2",
+  "C_Cpp.default.cppStandard": "c++20",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/debug/compile_commands.json",
+  "cmake.configureOnOpen": false,
+  "editor.formatOnSave": true,
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "files.associations": {
+    "*.hpp": "cpp",
+    "CMakePresets.json": "jsonc"
+  }
+}
