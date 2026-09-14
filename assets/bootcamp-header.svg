@@ -1,141 +1,94 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200"
      role="img" aria-labelledby="btitle bdesc">
   <title id="btitle">Bootcamp C++ Zero to Hero</title>
-  <desc id="bdesc">Banner: Bootcamp C++ Zero to Hero — 20 semanas, 200 horas, C++20, CMake, Catch2; a la derecha, una terminal con el pipeline de compilación y tests en verde</desc>
+  <desc id="bdesc">Banner: a la izquierda un hexágono con C++ dentro, al estilo del logo ISO C++; en el centro el título Zero to Hero con chips de 20 semanas, 200 horas, C++20 y CMake; a la derecha el pipeline de compilación de main.cpp al ejecutable pasando por el compilador y el enlazador, con los tests en verde.</desc>
+  <style>
+    .t   { font-family: Inter, Roboto, "Segoe UI", system-ui, sans-serif; }
+    .m   { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; }
+    .box { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .edge{ stroke: #484f58; stroke-width: 1.5; fill: none; marker-end: url(#arr); }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#484f58"/>
+    </marker>
+    <clipPath id="clip"><rect width="800" height="200" rx="12"/></clipPath>
+  </defs>
 
   <!-- Fondo -->
-  <rect width="800" height="200" fill="#0d1117"/>
+  <rect width="800" height="200" rx="12" fill="#0d1117"/>
+
+  <!-- Rejilla sutil (memoria) -->
+  <g clip-path="url(#clip)" stroke="#161b22" stroke-width="1">
+    <path d="M0 40H800M0 80H800M0 120H800M0 160H800"/>
+    <path d="M40 0V200M80 0V200M120 0V200M160 0V200M200 0V200M240 0V200M280 0V200M320 0V200M360 0V200M400 0V200M440 0V200M480 0V200M520 0V200M560 0V200M600 0V200M640 0V200M680 0V200M720 0V200M760 0V200"/>
+  </g>
 
   <!-- Barra de acento izquierda -->
-  <rect x="0" y="0" width="4" height="200" fill="#659ad2"/>
+  <rect x="0" y="0" width="4" height="200" fill="#659ad2" clip-path="url(#clip)"/>
 
-  <!-- Hexágono de fondo sutil (logo ISO C++) -->
-  <polygon points="200,15 273.6,57.5 273.6,142.5 200,185 126.4,142.5 126.4,57.5"
-           fill="#659ad2" fill-opacity="0.04"
-           stroke="#659ad2" stroke-width="1.5" stroke-opacity="0.1"/>
+  <!-- ═══ Hexágono C++ ═══ -->
+  <g transform="translate(96 100)">
+    <polygon points="0,-74 64,-37 64,37 0,74 -64,37 -64,-37" fill="#00599c"/>
+    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="#659ad2"/>
+    <polygon points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23" fill="#0d1117"/>
+    <text class="t" x="-9" y="13" text-anchor="middle" font-size="40" font-weight="700" fill="#e6edf3">C</text>
+    <text class="t" x="20" y="4" text-anchor="middle" font-size="22" font-weight="700" fill="#659ad2">++</text>
+  </g>
 
-  <!-- ═══════════ SECCIÓN IZQUIERDA ═══════════ -->
+  <!-- ═══ Título ═══ -->
+  <text class="t" x="196" y="52" font-size="11" font-weight="600" letter-spacing="4" fill="#484f58">BOOTCAMP · C++20</text>
+  <text class="t" x="194" y="104" font-size="50" font-weight="800" fill="#f0f6fc">Zero</text>
+  <path d="M312 88 H346 M338 80 L346 88 L338 96" stroke="#659ad2" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="t" x="358" y="104" font-size="50" font-weight="800" fill="#f0f6fc">Hero</text>
+  <text class="t" x="196" y="130" font-size="14" fill="#8b949e">De cero absoluto a C++20 avanzado, con tests.</text>
 
-  <!-- Label: BOOTCAMP -->
-  <text x="28" y="44"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="11" font-weight="600" letter-spacing="4"
-        fill="#484f58">BOOTCAMP</text>
+  <!-- Chips -->
+  <g class="t" font-size="10" font-weight="600" text-anchor="middle">
+    <rect x="196" y="150" width="82" height="22" rx="11" fill="#161b22" stroke="#30363d"/>
+    <text x="237" y="165" fill="#8b949e">20 semanas</text>
+    <rect x="286" y="150" width="72" height="22" rx="11" fill="#161b22" stroke="#30363d"/>
+    <text x="322" y="165" fill="#8b949e">200 horas</text>
+    <rect x="366" y="150" width="76" height="22" rx="11" fill="#0a1929" stroke="#659ad2"/>
+    <text x="404" y="165" fill="#659ad2">CMake 3.28</text>
+    <rect x="450" y="150" width="70" height="22" rx="11" fill="#0d2310" stroke="#3fb950"/>
+    <text x="485" y="165" fill="#3fb950">Catch2 v3</text>
+  </g>
 
-  <!-- Título principal: C++ -->
-  <text x="28" y="106"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="58" font-weight="700">
-    <tspan fill="#f0f6fc">C</tspan><tspan fill="#659ad2">++</tspan><tspan fill="#484f58" font-size="28" font-weight="500" dx="10">20</tspan>
-  </text>
+  <!-- Divisor -->
+  <line x1="548" y1="24" x2="548" y2="176" stroke="#21262d"/>
 
-  <!-- Subtítulo: Zero to Hero -->
-  <text x="28" y="134"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="17" font-weight="400"
-        fill="#8b949e">Zero to Hero</text>
+  <!-- ═══ Pipeline de compilación ═══ -->
+  <g class="m" font-size="11" text-anchor="middle">
+    <!-- main.cpp -->
+    <rect class="box" x="568" y="30" width="92" height="30" rx="6"/>
+    <text x="614" y="49" fill="#79c0ff">main.cpp</text>
+    <!-- compiler -->
+    <rect x="568" y="76" width="92" height="30" rx="6" fill="#0a1929" stroke="#659ad2"/>
+    <text x="614" y="95" fill="#659ad2">compiler</text>
+    <!-- main.o -->
+    <rect class="box" x="568" y="122" width="92" height="30" rx="6"/>
+    <text x="614" y="141" fill="#79c0ff">main.o</text>
+    <!-- linker -->
+    <rect x="686" y="76" width="92" height="30" rx="6" fill="#0a1929" stroke="#659ad2"/>
+    <text x="732" y="95" fill="#659ad2">linker</text>
+    <!-- ./app -->
+    <rect x="686" y="122" width="92" height="30" rx="6" fill="#0d2310" stroke="#3fb950"/>
+    <text x="732" y="141" fill="#3fb950">./app</text>
+    <!-- libstdc++ -->
+    <rect class="box" x="686" y="30" width="92" height="30" rx="6"/>
+    <text x="732" y="49" fill="#8b949e">libstdc++</text>
+  </g>
+  <!-- flechas -->
+  <path class="edge" d="M614 60 V72"/>
+  <path class="edge" d="M614 106 V118"/>
+  <path class="edge" d="M660 137 H668 Q676 137 676 129 V99 Q676 91 684 91"/>
+  <path class="edge" d="M732 60 V72"/>
+  <path class="edge" d="M732 106 V118"/>
 
-  <!-- Chip: 20 semanas -->
-  <rect x="28" y="152" width="84" height="20" rx="4"
-        fill="#161b22" stroke="#30363d" stroke-width="1"/>
-  <text x="70" y="166"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="500"
-        fill="#8b949e" text-anchor="middle">20 semanas</text>
-
-  <!-- Chip: 200 horas -->
-  <rect x="118" y="152" width="74" height="20" rx="4"
-        fill="#161b22" stroke="#30363d" stroke-width="1"/>
-  <text x="155" y="166"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="500"
-        fill="#8b949e" text-anchor="middle">200 horas</text>
-
-  <!-- Chip: CMake 3.28 -->
-  <rect x="198" y="152" width="80" height="20" rx="4"
-        fill="#0a1929" stroke="#659ad2" stroke-width="1"/>
-  <text x="238" y="166"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="600"
-        fill="#659ad2" text-anchor="middle">CMake 3.28</text>
-
-  <!-- Chip: Catch2 -->
-  <rect x="284" y="152" width="70" height="20" rx="4"
-        fill="#0d2310" stroke="#3fb950" stroke-width="1"/>
-  <text x="319" y="166"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="600"
-        fill="#3fb950" text-anchor="middle">Catch2 v3</text>
-
-  <!-- Divisor vertical -->
-  <line x1="400" y1="20" x2="400" y2="180" stroke="#21262d" stroke-width="1"/>
-
-  <!-- ═══════════ SECCIÓN DERECHA: Terminal ═══════════ -->
-
-  <!-- Caja terminal -->
-  <rect x="416" y="22" width="360" height="156" rx="8"
-        fill="#161b22" stroke="#30363d" stroke-width="1"/>
-
-  <!-- Barra superior terminal -->
-  <rect x="417" y="23" width="358" height="27" rx="7" fill="#21262d"/>
-  <rect x="417" y="38" width="358" height="12" fill="#21262d"/>
-
-  <!-- Dots -->
-  <circle cx="437" cy="36" r="5" fill="#f85149"/>
-  <circle cx="455" cy="36" r="5" fill="#d29922"/>
-  <circle cx="473" cy="36" r="5" fill="#3fb950"/>
-
-  <!-- Título de la terminal -->
-  <text x="596" y="41"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="11" fill="#484f58" text-anchor="middle">build · test · sanitize</text>
-
-  <!-- Divisor barra/contenido -->
-  <line x1="416" y1="50" x2="776" y2="50" stroke="#30363d" stroke-width="1"/>
-
-  <!-- $ cmake --preset asan -->
-  <text x="432" y="72"
-        font-family="ui-monospace,Consolas,monospace"
-        font-size="12" fill="#8b949e"><tspan fill="#659ad2">$</tspan> cmake --preset asan</text>
-  <text x="766" y="72"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="500"
-        fill="#3fb950" text-anchor="end">configured</text>
-
-  <!-- $ cmake --build -->
-  <text x="432" y="94"
-        font-family="ui-monospace,Consolas,monospace"
-        font-size="12" fill="#8b949e"><tspan fill="#659ad2">$</tspan> cmake --build --preset asan</text>
-  <text x="766" y="94"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="500"
-        fill="#3fb950" text-anchor="end">0 warnings</text>
-
-  <!-- $ ctest -->
-  <text x="432" y="116"
-        font-family="ui-monospace,Consolas,monospace"
-        font-size="12" fill="#8b949e"><tspan fill="#659ad2">$</tspan> ctest --preset asan</text>
-  <text x="766" y="116"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="500"
-        fill="#3fb950" text-anchor="end">100% passed</text>
-
-  <!-- sanitizers -->
-  <text x="432" y="138"
-        font-family="ui-monospace,Consolas,monospace"
-        font-size="12" fill="#8b949e">ASan · UBSan · TSan</text>
-  <text x="766" y="138"
-        font-family="system-ui,-apple-system,sans-serif"
-        font-size="10" font-weight="500"
-        fill="#3fb950" text-anchor="end">0 reports</text>
-
-  <!-- Footer terminal -->
-  <line x1="416" y1="154" x2="776" y2="154" stroke="#21262d" stroke-width="1"/>
-  <text x="596" y="167"
-        font-family="ui-monospace,Consolas,monospace"
-        font-size="10" fill="#484f58" text-anchor="middle">RAII · templates · STL · threads · coroutines · Asio</text>
-
-  <!-- Línea inferior del banner -->
-  <line x1="4" y1="199" x2="800" y2="199" stroke="#21262d" stroke-width="1"/>
-
+  <!-- Estado tests -->
+  <g class="t" font-size="10" font-weight="600">
+    <rect x="568" y="164" width="210" height="18" rx="9" fill="#0d2310" stroke="#3fb950"/>
+    <text x="673" y="176" text-anchor="middle" fill="#3fb950">ctest 100% · ASan · UBSan · TSan</text>
+  </g>
 </svg>
