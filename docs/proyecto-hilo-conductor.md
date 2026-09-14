@@ -13,7 +13,7 @@ acumula.
 
 | Semana | Capa que se añade | Qué existe al terminar |
 | ------ | ----------------- | ---------------------- |
-| 01 | Esqueleto | Ejecutable que carga `data/<recurso>.txt` y muestra estadísticas básicas. CMake mínimo |
+| 01 | Esqueleto | Ejecutable con CMake propio que define el recurso del dominio con tipos y constantes, calcula estadísticas de tres registros fijos y las imprime con `std::format` |
 | 02 | Menú CRUD en memoria | `std::vector<Recurso>`, funciones libres de alta, baja, búsqueda, listado. Validación de entrada |
 | 03 | Estructura propia | Una pila o cola dinámica propia (con `new`/`delete`, la única vez) para el historial de operaciones |
 | 04 | Modelo con invariantes | El recurso como `class` con constructor validado, RAII, `operator<=>`. Primeros tests Catch2 |

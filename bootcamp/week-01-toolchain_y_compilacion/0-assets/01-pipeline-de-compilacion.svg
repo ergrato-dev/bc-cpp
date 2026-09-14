@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img"
+     aria-label="Cuatro etapas en fila: el preprocesador convierte hello.cpp en hello.ii, el compilador lo convierte en hello.s, el ensamblador en hello.o y el enlazador, junto con libstdc++, produce el ejecutable hello. Bajo cada etapa, el flag de g++ que detiene el pipeline justo ahí y el tipo de error que produce.">
+  <title>Pipeline de compilación de C++</title>
+  <style>
+    .bg   { fill: #0d1117; }
+    .surf { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .step { fill: #0a1929; stroke: #659ad2; stroke-width: 1.5; }
+    .lib  { fill: #161b22; stroke: #8b949e; stroke-width: 1; stroke-dasharray: 4 3; }
+    .t    { font-family: Inter, Roboto, "Segoe UI", system-ui, sans-serif; }
+    .code { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; fill: #79c0ff; }
+    .h    { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+    .s    { font-size: 12px; fill: #8b949e; }
+    .a    { font-size: 13px; font-weight: 600; fill: #659ad2; }
+    .err  { font-size: 12px; fill: #f85149; }
+    .edge { stroke: #484f58; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="880" height="400" rx="12"/>
+
+  <text class="t h" x="440" y="34" text-anchor="middle">Del código fuente al ejecutable</text>
+  <text class="t s" x="440" y="54" text-anchor="middle">g++ es un driver: llama a cuatro programas en orden</text>
+
+  <!-- Archivos (fila superior) -->
+  <g class="t" font-size="13" text-anchor="middle">
+    <rect class="surf" x="20" y="90" width="110" height="44" rx="8"/>
+    <text class="code" x="75" y="117">hello.cpp</text>
+    <rect class="surf" x="200" y="90" width="110" height="44" rx="8"/>
+    <text class="code" x="255" y="117">hello.ii</text>
+    <rect class="surf" x="380" y="90" width="110" height="44" rx="8"/>
+    <text class="code" x="435" y="117">hello.s</text>
+    <rect class="surf" x="560" y="90" width="110" height="44" rx="8"/>
+    <text class="code" x="615" y="117">hello.o</text>
+    <rect x="740" y="90" width="120" height="44" rx="8" fill="#0d2310" stroke="#3fb950" stroke-width="1.5"/>
+    <text class="code" x="800" y="117" fill="#3fb950">./hello</text>
+  </g>
+  <g class="t s" text-anchor="middle" font-size="12">
+    <text x="75" y="150">texto C++</text>
+    <text x="255" y="150">texto, sin # ni comentarios</text>
+    <text x="435" y="150">ensamblador (texto)</text>
+    <text x="615" y="150">código objeto, con huecos</text>
+    <text x="800" y="150">ejecutable</text>
+  </g>
+
+  <!-- Etapas (fila inferior) -->
+  <g class="t" text-anchor="middle">
+    <rect class="step" x="110" y="200" width="130" height="52" rx="8"/>
+    <text class="a" x="175" y="222">1 · Preprocesador</text>
+    <text class="code" x="175" y="241" font-size="12">cpp</text>
+
+    <rect class="step" x="290" y="200" width="130" height="52" rx="8"/>
+    <text class="a" x="355" y="222">2 · Compilador</text>
+    <text class="code" x="355" y="241" font-size="12">cc1plus</text>
+
+    <rect class="step" x="470" y="200" width="130" height="52" rx="8"/>
+    <text class="a" x="535" y="222">3 · Ensamblador</text>
+    <text class="code" x="535" y="241" font-size="12">as</text>
+
+    <rect class="step" x="650" y="200" width="130" height="52" rx="8"/>
+    <text class="a" x="715" y="222">4 · Enlazador</text>
+    <text class="code" x="715" y="241" font-size="12">ld</text>
+
+    <rect class="lib" x="650" y="300" width="130" height="40" rx="8"/>
+    <text class="s" x="715" y="325">libstdc++ · libc</text>
+  </g>
+
+  <!-- Flechas archivo -> etapa -> archivo -->
+  <path class="edge" d="M130 112 H160 V196"/>
+  <path class="edge" d="M190 196 V112 H196"/>
+  <path class="edge" d="M310 112 H340 V196"/>
+  <path class="edge" d="M370 196 V112 H376"/>
+  <path class="edge" d="M490 112 H520 V196"/>
+  <path class="edge" d="M550 196 V112 H556"/>
+  <path class="edge" d="M670 112 H700 V196"/>
+  <path class="edge" d="M730 196 V112 H736"/>
+  <path class="edge" d="M715 300 V256"/>
+
+  <!-- Flags y errores -->
+  <g class="t" font-size="12" text-anchor="middle">
+    <text class="s" x="175" y="280">parar aquí:</text>
+    <text class="code" x="175" y="296">g++ -E</text>
+    <text class="err" x="175" y="318">fatal error: No such file</text>
+
+    <text class="s" x="355" y="280">parar aquí:</text>
+    <text class="code" x="355" y="296">g++ -S</text>
+    <text class="err" x="355" y="318">error: expected ';'</text>
+    <text class="err" x="355" y="334">error: not declared</text>
+
+    <text class="s" x="535" y="280">parar aquí:</text>
+    <text class="code" x="535" y="296">g++ -c</text>
+    <text class="s" x="535" y="318">(casi nunca falla)</text>
+
+    <text class="err" x="715" y="366">undefined reference</text>
+    <text class="err" x="715" y="382">multiple definition</text>
+  </g>
+
+  <text class="t s" x="20" y="382">-fsyntax-only: etapas 1 y 2 sin escribir nada</text>
+</svg>

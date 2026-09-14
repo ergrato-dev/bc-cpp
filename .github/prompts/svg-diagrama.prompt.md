@@ -78,6 +78,10 @@ Sin degradados. Colores sólidos. Tema oscuro, siempre.
 - **Clases CSS reutilizadas**, no estilos en línea repetidos. El SVG tiene que poder
   leerse y editarse a mano.
 - **Flechas con `<marker>`** definido una vez y reutilizado.
+- **XML bien formado.** Nunca `--` dentro de un comentario `<!-- -->` (un flag como
+  `--preset` dentro de un comentario rompe el parser y GitHub no renderiza el SVG);
+  `&` siempre como `&amp;`. Valida antes de entregar:
+  `python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse(sys.argv[1])" archivo.svg`
 - **El código dentro del diagrama es C++ válido** y coincide con el de la teoría que
   lo enlaza. Un diagrama con `std::unique_ptr<T> p = new T;` es un bug.
 
@@ -100,6 +104,7 @@ Desde un archivo de `1-teoria/`, con ruta relativa y descripción accesible:
 
 ## Verificación antes de entregar
 
+- [ ] XML bien formado (parser sin errores; sin `--` en comentarios)
 - [ ] Solo colores de la paleta, sin degradados
 - [ ] `viewBox`, `role="img"`, `<title>` y `aria-label` presentes
 - [ ] Todo el texto en 12 px o más

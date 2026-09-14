@@ -55,9 +55,13 @@ while IFS= read -r rm; do
   fi
 done < <(find bootcamp -mindepth 2 -maxdepth 2 -iname "README.md" 2>/dev/null)
 
-echo "== 4. SVG huérfanos =="
+echo "== 4. SVG huérfanos y XML válido =="
 while IFS= read -r svg; do
   base=$(basename "$svg")
+  if ! python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse(sys.argv[1])" "$svg" 2>/dev/null; then
+    echo "SVG MAL FORMADO (XML inválido; GitHub no lo renderiza): $svg"
+    fail=1
+  fi
   if ! grep -rqF "$base" --include="*.md" .; then
     echo "SVG HUERFANO (no enlazado desde ningún .md): $svg"
     fail=1
@@ -65,10 +69,18 @@ while IFS= read -r svg; do
 done < <(find bootcamp assets -iname "*.svg" 2>/dev/null)
 
 echo "== 5. Carpetas prohibidas =="
+# solution/ no puede existir ni en disco; build/ es local (gitignore) pero nunca versionado.
 while IFS= read -r d; do
   echo "CARPETA PROHIBIDA: $d"
   fail=1
-done < <(find bootcamp -type d \( -name solution -o -name build \) 2>/dev/null)
+done < <(find bootcamp -type d -name solution 2>/dev/null)
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  while IFS= read -r f; do
+    [ -z "$f" ] && continue
+    echo "BUILD VERSIONADO: $f"
+    fail=1
+  done < <(git ls-files bootcamp | grep -E '/build/' )
+fi
 
 echo "== 6. FetchContent con GIT_TAG exacto =="
 while IFS= read -r cm; do

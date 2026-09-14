@@ -38,15 +38,15 @@ siguen a cada banner `PASO N`:
 ```bash
 tmp=$(mktemp -d)
 cp -r bootcamp/week-NN-*/2-practicas/ejercicio-MM-*/starter "$tmp/starter"
-# ponytail: descomenta todo lo que esté entre un banner "PASO" y el siguiente banner o EOF,
-# solo líneas que empiezan por "// " seguido de código (no las que son prosa).
-find "$tmp/starter/src" -name '*.cpp' -o -name '*.hpp' | while read -r f; do
+# ponytail: descomenta las líneas "// código" que siguen a la marca
+# "Descomenta las siguientes líneas" hasta el siguiente banner "// ====".
+# Por eso el formato del starter exige: prosa ANTES de la marca, nunca después.
+find "$tmp/starter/src" \( -name '*.cpp' -o -name '*.hpp' \) | while read -r f; do
   awk '
-    /^\/\/ =+$/ { inpaso = 0 }
-    /^\/\/ PASO [0-9]+/ { inpaso = 1 }
-    /^\/\/ Descomenta/ { next }
-    inpaso && /^\/\/ [^ ]/ { sub(/^\/\/ /, ""); print; next }
-    inpaso && /^\/\/$/ { print ""; next }
+    /^[ \t]*\/\/ =+$/ { on = 0 }
+    /^[ \t]*\/\/ Descomenta/ { on = 1; next }
+    on && /^[ \t]*\/\/ / { sub(/\/\/ /, ""); print; next }
+    on && /^[ \t]*\/\/$/ { sub(/\/\//, ""); print; next }
     { print }
   ' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
 done

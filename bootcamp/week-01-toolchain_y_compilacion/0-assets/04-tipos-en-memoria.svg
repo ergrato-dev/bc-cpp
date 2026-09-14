@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img"
+     aria-label="Seis tipos fundamentales dibujados como filas de bytes: bool y char ocupan 1 byte, int y float 4 bytes, long long y double 8 bytes. Cada fila muestra su rango. Abajo, los mismos cuatro bytes 41 00 00 00 leídos como int valen 65 y leídos como char valen la letra A: el tipo decide cómo se interpretan los bytes.">
+  <title>Tipos fundamentales en memoria</title>
+  <style>
+    .bg   { fill: #0d1117; }
+    .t    { font-family: Inter, Roboto, "Segoe UI", system-ui, sans-serif; }
+    .code { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; fill: #79c0ff; font-size: 13px; }
+    .h    { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+    .s    { font-size: 12px; fill: #8b949e; }
+    .byte { fill: #21262d; stroke: #30363d; stroke-width: 1; }
+    .bi   { fill: #0a1929; stroke: #659ad2; stroke-width: 1; }
+    .bf   { fill: #1f1233; stroke: #a371f7; stroke-width: 1; }
+    .bb   { fill: #0d2310; stroke: #3fb950; stroke-width: 1; }
+    .lbl  { font-size: 12px; fill: #e6edf3; }
+  </style>
+  <rect class="bg" width="880" height="400" rx="12"/>
+  <text class="t h" x="440" y="34" text-anchor="middle">Cada tipo: cuántos bytes, cómo se leen, qué operaciones admite</text>
+  <text class="t s" x="440" y="54" text-anchor="middle">Tamaños en x86-64 Linux (GCC 13). Un cuadrado = 1 byte</text>
+
+  <!-- Cabeceras -->
+  <text class="t s" x="30" y="84">tipo</text>
+  <text class="t s" x="150" y="84">bytes</text>
+  <text class="t s" x="420" y="84">rango / precisión</text>
+  <text class="t s" x="700" y="84">operaciones</text>
+
+  <!-- bool -->
+  <text class="code" x="30" y="112">bool</text>
+  <rect class="bb" x="150" y="98" width="22" height="20" rx="3"/>
+  <text class="t s" x="420" y="112">true / false</text>
+  <text class="t s" x="700" y="112">! &amp;&amp; ||</text>
+
+  <!-- char -->
+  <text class="code" x="30" y="148">char</text>
+  <rect class="bb" x="150" y="134" width="22" height="20" rx="3"/>
+  <text class="t s" x="420" y="148">-128 .. 127 (un carácter ASCII)</text>
+  <text class="t s" x="700" y="148">comparar, imprimir</text>
+
+  <!-- int -->
+  <text class="code" x="30" y="184">int</text>
+  <rect class="bi" x="150" y="170" width="22" height="20" rx="3"/>
+  <rect class="bi" x="176" y="170" width="22" height="20" rx="3"/>
+  <rect class="bi" x="202" y="170" width="22" height="20" rx="3"/>
+  <rect class="bi" x="228" y="170" width="22" height="20" rx="3"/>
+  <text class="t s" x="420" y="184">-2 147 483 648 .. 2 147 483 647</text>
+  <text class="t s" x="700" y="184">+ - * / %</text>
+
+  <!-- float -->
+  <text class="code" x="30" y="220">float</text>
+  <rect class="bf" x="150" y="206" width="22" height="20" rx="3"/>
+  <rect class="bf" x="176" y="206" width="22" height="20" rx="3"/>
+  <rect class="bf" x="202" y="206" width="22" height="20" rx="3"/>
+  <rect class="bf" x="228" y="206" width="22" height="20" rx="3"/>
+  <text class="t s" x="420" y="220">~7 dígitos significativos</text>
+  <text class="t s" x="700" y="220">+ - * /   (sin %)</text>
+
+  <!-- long long -->
+  <text class="code" x="30" y="256">long long</text>
+  <rect class="bi" x="150" y="242" width="22" height="20" rx="3"/>
+  <rect class="bi" x="176" y="242" width="22" height="20" rx="3"/>
+  <rect class="bi" x="202" y="242" width="22" height="20" rx="3"/>
+  <rect class="bi" x="228" y="242" width="22" height="20" rx="3"/>
+  <rect class="bi" x="254" y="242" width="22" height="20" rx="3"/>
+  <rect class="bi" x="280" y="242" width="22" height="20" rx="3"/>
+  <rect class="bi" x="306" y="242" width="22" height="20" rx="3"/>
+  <rect class="bi" x="332" y="242" width="22" height="20" rx="3"/>
+  <text class="t s" x="420" y="256">±9,2 × 10¹⁸</text>
+  <text class="t s" x="700" y="256">+ - * / %</text>
+
+  <!-- double -->
+  <text class="code" x="30" y="292">double</text>
+  <rect class="bf" x="150" y="278" width="22" height="20" rx="3"/>
+  <rect class="bf" x="176" y="278" width="22" height="20" rx="3"/>
+  <rect class="bf" x="202" y="278" width="22" height="20" rx="3"/>
+  <rect class="bf" x="228" y="278" width="22" height="20" rx="3"/>
+  <rect class="bf" x="254" y="278" width="22" height="20" rx="3"/>
+  <rect class="bf" x="280" y="278" width="22" height="20" rx="3"/>
+  <rect class="bf" x="306" y="278" width="22" height="20" rx="3"/>
+  <rect class="bf" x="332" y="278" width="22" height="20" rx="3"/>
+  <text class="t s" x="420" y="292">~16 dígitos significativos</text>
+  <text class="t s" x="700" y="292">+ - * /   (sin %)</text>
+
+  <!-- Leyenda -->
+  <rect class="bb" x="700" y="308" width="12" height="12" rx="2"/><text class="t s" x="718" y="318" font-size="12">lógico / carácter</text>
+  <rect class="bi" x="700" y="326" width="12" height="12" rx="2"/><text class="t s" x="718" y="336" font-size="12">entero</text>
+  <rect class="bf" x="700" y="344" width="12" height="12" rx="2"/><text class="t s" x="718" y="354" font-size="12">coma flotante</text>
+
+  <!-- Mismos bytes, distinto tipo -->
+  <text class="t s" x="30" y="332">Los mismos 4 bytes:</text>
+  <rect class="byte" x="30" y="342" width="34" height="22" rx="3"/><text class="code" x="47" y="357" text-anchor="middle" font-size="12">41</text>
+  <rect class="byte" x="68" y="342" width="34" height="22" rx="3"/><text class="code" x="85" y="357" text-anchor="middle" font-size="12">00</text>
+  <rect class="byte" x="106" y="342" width="34" height="22" rx="3"/><text class="code" x="123" y="357" text-anchor="middle" font-size="12">00</text>
+  <rect class="byte" x="144" y="342" width="34" height="22" rx="3"/><text class="code" x="161" y="357" text-anchor="middle" font-size="12">00</text>
+  <text class="t lbl" x="200" y="352">leídos como int  →  65</text>
+  <text class="t lbl" x="200" y="368">el primero leído como char  →  'A'</text>
+  <text class="t s" x="420" y="360" font-size="12">El tipo no está en la memoria: está en el código. Por eso el compilador lo necesita.</text>
+</svg>

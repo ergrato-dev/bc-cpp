@@ -87,7 +87,7 @@ gdb --version | head -1
 Y compila el primer starter del bootcamp:
 
 ```bash
-cd bootcamp/week-01-toolchain_y_compilacion/2-practicas/ejercicio-01-*/starter
+cd bootcamp/week-01-toolchain_y_compilacion/2-practicas/ejercicio-01-hola-toolchain/starter
 cmake --preset debug && cmake --build --preset debug && ctest --preset debug
 ```
 

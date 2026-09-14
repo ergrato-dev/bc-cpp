@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" width="880" height="380" role="img"
+     aria-label="Dos archivos fuente, main.cpp y utils.cpp, se compilan por separado: cada uno pasa por su propio preprocesado y compilación y produce un archivo objeto. main.o contiene una llamada a sumar con un hueco; utils.o contiene la definición de sumar. El enlazador junta los dos objetos y la biblioteca estándar, rellena el hueco y produce el ejecutable app. Abajo, los dos errores del enlazador: undefined reference cuando falta la definición y multiple definition cuando sobra.">
+  <title>Unidades de traducción y enlace</title>
+  <style>
+    .bg   { fill: #0d1117; }
+    .surf { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .step { fill: #0a1929; stroke: #659ad2; stroke-width: 1.5; }
+    .ok   { fill: #0d2310; stroke: #3fb950; stroke-width: 1.5; }
+    .lib  { fill: #161b22; stroke: #8b949e; stroke-width: 1; stroke-dasharray: 4 3; }
+    .t    { font-family: Inter, Roboto, "Segoe UI", system-ui, sans-serif; }
+    .code { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; fill: #79c0ff; font-size: 12px; }
+    .h    { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+    .s    { font-size: 12px; fill: #8b949e; }
+    .a    { font-size: 13px; font-weight: 600; fill: #659ad2; }
+    .err  { font-size: 12px; fill: #f85149; }
+    .hole { fill: #2d0000; stroke: #f85149; stroke-width: 1; stroke-dasharray: 3 2; }
+    .edge { stroke: #484f58; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="880" height="380" rx="12"/>
+  <text class="t h" x="440" y="34" text-anchor="middle">El compilador ve un archivo cada vez; el enlazador junta</text>
+
+  <!-- Unidad 1: main.cpp -->
+  <rect class="surf" x="30" y="70" width="200" height="96" rx="8"/>
+  <text class="code" x="44" y="92" fill="#e6edf3" font-weight="600">main.cpp</text>
+  <text class="code" x="44" y="114">int sumar(int, int);</text>
+  <text class="s" x="44" y="130" font-size="12">← declaración: "existe"</text>
+  <text class="code" x="44" y="152">int main() { return sumar(1, 2); }</text>
+
+  <!-- Unidad 2: utils.cpp -->
+  <rect class="surf" x="30" y="220" width="200" height="80" rx="8"/>
+  <text class="code" x="44" y="242" fill="#e6edf3" font-weight="600">utils.cpp</text>
+  <text class="code" x="44" y="264">int sumar(int a, int b) {</text>
+  <text class="code" x="44" y="280">  return a + b; }</text>
+  <text class="s" x="44" y="296" font-size="12">← definición: el cuerpo (solo una)</text>
+
+  <!-- Compilación separada -->
+  <rect class="step" x="280" y="96" width="120" height="44" rx="8"/>
+  <text class="t a" x="340" y="122" text-anchor="middle">g++ -c</text>
+  <rect class="step" x="280" y="238" width="120" height="44" rx="8"/>
+  <text class="t a" x="340" y="264" text-anchor="middle">g++ -c</text>
+  <path class="edge" d="M230 118 H276"/>
+  <path class="edge" d="M230 260 H276"/>
+
+  <!-- Objetos -->
+  <rect class="surf" x="450" y="82" width="170" height="72" rx="8"/>
+  <text class="code" x="464" y="104" fill="#e6edf3" font-weight="600">main.o</text>
+  <text class="code" x="464" y="124">main: call</text>
+  <rect class="hole" x="536" y="112" width="70" height="16" rx="3"/>
+  <text class="err" x="571" y="124" text-anchor="middle" font-size="12">sumar ???</text>
+  <text class="s" x="464" y="144" font-size="12">hueco: "sumar" sin resolver</text>
+
+  <rect class="surf" x="450" y="224" width="170" height="72" rx="8"/>
+  <text class="code" x="464" y="246" fill="#e6edf3" font-weight="600">utils.o</text>
+  <text class="code" x="464" y="266">sumar: add a, b</text>
+  <text class="s" x="464" y="286" font-size="12">símbolo "sumar" definido</text>
+
+  <path class="edge" d="M400 118 H446"/>
+  <path class="edge" d="M400 260 H446"/>
+
+  <!-- Enlazador -->
+  <rect class="step" x="670" y="160" width="100" height="52" rx="8"/>
+  <text class="t a" x="720" y="182" text-anchor="middle">Enlazador</text>
+  <text class="code" x="720" y="200" text-anchor="middle">ld</text>
+  <path class="edge" d="M620 118 H646 V186 H666"/>
+  <path class="edge" d="M620 260 H646 V186 H666"/>
+
+  <rect class="lib" x="670" y="240" width="100" height="36" rx="8"/>
+  <text class="t s" x="720" y="262" text-anchor="middle">libstdc++</text>
+  <path class="edge" d="M720 240 V216"/>
+
+  <!-- Ejecutable -->
+  <rect class="ok" x="800" y="164" width="64" height="44" rx="8"/>
+  <text class="code" x="832" y="190" text-anchor="middle" fill="#3fb950">./app</text>
+  <path class="edge" d="M770 186 H796"/>
+
+  <!-- Errores -->
+  <rect class="surf" x="30" y="322" width="820" height="40" rx="8"/>
+  <text class="t err" x="44" y="340">undefined reference to 'sumar(int, int)'</text>
+  <text class="t s" x="44" y="355" font-size="12">cero definiciones: utils.cpp no está en la orden de compilación</text>
+  <text class="t err" x="460" y="340">multiple definition of 'sumar(int, int)'</text>
+  <text class="t s" x="460" y="355" font-size="12">dos definiciones: dos .cpp con el mismo cuerpo (Semana 11, ODR)</text>
+</svg>

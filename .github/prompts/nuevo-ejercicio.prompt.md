@@ -122,6 +122,12 @@ cmake --preset asan && cmake --build --preset asan && ctest --preset asan
 - **Ningún concepto de una semana posterior.** Consulta la malla.
 - Un starter compila desde el Paso 0 (con todo comentado) y **falla en los tests, no en
   la compilación**. Si hace falta un stub para que enlace, se pone el stub.
+- **Dentro de un bloque `PASO N`, la prosa va ANTES de la línea
+  `// Descomenta las siguientes líneas`; después de esa línea solo hay código
+  comentado** (con un espacio tras `//`) hasta el siguiente banner. El script de
+  verificación descomenta mecánicamente todo lo que sigue a la marca; un comentario de
+  prosa ahí se convierte en código y rompe la compilación. Los pasos "manuales"
+  (provocar un error, ver un diagnóstico) se describen en el README, no en el starter.
 
 ## Formato del starter
 

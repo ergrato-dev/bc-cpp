@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" width="880" height="360" role="img"
+     aria-label="Tres fases en fila. Configurar: cmake lee CMakeLists.txt y CMakePresets.json y genera build/debug/build.ninja y compile_commands.json. Construir: cmake --build llama a ninja, que ejecuta g++ solo sobre lo que cambió y produce el ejecutable. Probar: ctest ejecuta los tests registrados con add_test y comprueba su salida. Bajo cada fase, el comando con preset y el tipo de error que produce.">
+  <title>Flujo de CMake: configurar, construir, probar</title>
+  <style>
+    .bg   { fill: #0d1117; }
+    .surf { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .step { fill: #0a1929; stroke: #659ad2; stroke-width: 1.5; }
+    .ok   { fill: #0d2310; stroke: #3fb950; stroke-width: 1.5; }
+    .t    { font-family: Inter, Roboto, "Segoe UI", system-ui, sans-serif; }
+    .code { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; fill: #79c0ff; font-size: 12px; }
+    .h    { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+    .s    { font-size: 12px; fill: #8b949e; }
+    .a    { font-size: 14px; font-weight: 600; fill: #659ad2; }
+    .err  { font-size: 12px; fill: #f85149; }
+    .edge { stroke: #484f58; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="880" height="360" rx="12"/>
+  <text class="t h" x="440" y="34" text-anchor="middle">CMake: dos fases (y una tercera cuando hay tests)</text>
+
+  <!-- Entradas -->
+  <rect class="surf" x="24" y="70" width="150" height="70" rx="8"/>
+  <text class="code" x="99" y="94" text-anchor="middle" fill="#e6edf3" font-weight="600">CMakeLists.txt</text>
+  <text class="code" x="99" y="112" text-anchor="middle">CMakePresets.json</text>
+  <text class="code" x="99" y="130" text-anchor="middle">src/*.cpp</text>
+
+  <!-- Fase 1 -->
+  <rect class="step" x="220" y="70" width="170" height="70" rx="8"/>
+  <text class="t a" x="305" y="96" text-anchor="middle">1 · Configurar</text>
+  <text class="code" x="305" y="116" text-anchor="middle">cmake --preset debug</text>
+  <text class="t s" x="305" y="132" text-anchor="middle" font-size="12">lee, detecta compilador, genera</text>
+  <path class="edge" d="M174 105 H216"/>
+
+  <!-- Generados -->
+  <rect class="surf" x="220" y="176" width="170" height="60" rx="8"/>
+  <text class="code" x="305" y="196" text-anchor="middle" fill="#e6edf3" font-weight="600">build/debug/</text>
+  <text class="code" x="305" y="212" text-anchor="middle">build.ninja</text>
+  <text class="code" x="305" y="228" text-anchor="middle">compile_commands.json</text>
+  <path class="edge" d="M305 140 V172"/>
+
+  <!-- Fase 2 -->
+  <rect class="step" x="440" y="70" width="190" height="70" rx="8"/>
+  <text class="t a" x="535" y="96" text-anchor="middle">2 · Construir</text>
+  <text class="code" x="535" y="116" text-anchor="middle">cmake --build --preset debug</text>
+  <text class="t s" x="535" y="132" text-anchor="middle" font-size="12">ninja → g++ solo lo que cambió</text>
+  <path class="edge" d="M390 206 H415 V105 H436"/>
+
+  <rect class="ok" x="460" y="176" width="150" height="40" rx="8"/>
+  <text class="code" x="535" y="200" text-anchor="middle" fill="#3fb950">build/debug/app</text>
+  <path class="edge" d="M535 140 V172"/>
+
+  <!-- Fase 3 -->
+  <rect class="step" x="680" y="70" width="176" height="70" rx="8"/>
+  <text class="t a" x="768" y="96" text-anchor="middle">3 · Probar</text>
+  <text class="code" x="768" y="116" text-anchor="middle">ctest --preset debug</text>
+  <text class="t s" x="768" y="132" text-anchor="middle" font-size="12">ejecuta cada add_test</text>
+  <path class="edge" d="M610 196 H655 V105 H676"/>
+
+  <rect class="surf" x="690" y="176" width="156" height="60" rx="8"/>
+  <text class="t s" x="768" y="196" text-anchor="middle" font-size="12">app_prints_greeting</text>
+  <text class="t" x="768" y="214" text-anchor="middle" font-size="12" fill="#3fb950">Passed</text>
+  <text class="t s" x="768" y="230" text-anchor="middle" font-size="12">100% tests passed</text>
+  <path class="edge" d="M768 140 V172"/>
+
+  <!-- Errores por fase -->
+  <g class="t" font-size="12">
+    <text class="err" x="220" y="272">Falla aquí:</text>
+    <text class="s" x="220" y="290" font-size="12">sintaxis de CMakeLists.txt</text>
+    <text class="s" x="220" y="306" font-size="12">compilador no encontrado</text>
+    <text class="s" x="220" y="322" font-size="12">dependencia no descargable</text>
+
+    <text class="err" x="440" y="272">Falla aquí:</text>
+    <text class="s" x="440" y="290" font-size="12">error: (compilador)</text>
+    <text class="s" x="440" y="306" font-size="12">undefined reference (enlazador)</text>
+    <text class="s" x="440" y="322" font-size="12">= los errores del archivo 02</text>
+
+    <text class="err" x="680" y="272">Falla aquí:</text>
+    <text class="s" x="680" y="290" font-size="12">Required regular expression</text>
+    <text class="s" x="680" y="306" font-size="12">not found → el programa</text>
+    <text class="s" x="680" y="322" font-size="12">no escribió lo esperado</text>
+  </g>
+
+  <text class="t s" x="24" y="344" font-size="12">build/ se puede borrar entero y regenerar. Nunca se sube al repositorio.</text>
+</svg>

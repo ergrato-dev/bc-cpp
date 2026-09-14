@@ -228,6 +228,9 @@ Reglas:
   concreta, o un diagnóstico del compilador o de un sanitizer
 - Los **tests van escritos en el starter** y fallan hasta que el estudiante descomenta.
   Los tests son el contrato del ejercicio
+- **Semanas 01-03** (antes de clases y de Catch2): los tests son `add_test` de CTest
+  sobre la salida del programa, con `PASS_REGULAR_EXPRESSION`. **Desde la 04**: Catch2
+  con `catch_discover_tests`
 - ❌ No usar `// TODO:` en prácticas — eso es formato de proyecto
 - ❌ **Sin carpeta `solution/`**: el código comentado ES la solución. `**/solution/`
   está en `.gitignore`
