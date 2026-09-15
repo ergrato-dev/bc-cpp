@@ -92,7 +92,7 @@ Al finalizar el bootcamp, los estudiantes serán capaces de:
 | Semana | Slug                                   | Tema                                                                       |
 | ------ | -------------------------------------- | -------------------------------------------------------------------------- |
 | 01     | `toolchain_y_compilacion`              | Historia y estándares, g++/clang++, pipeline, CMake mínimo, tipos, E/S     |
-| 02     | `control_funciones_referencias`        | Control de flujo, funciones, referencias, alcance, `string`, `vector`, UB  |
+| 02     | `control_funciones_referencias`        | Control de flujo, funciones, referencias, alcance, `string`, `vector`, agregados, UB |
 | 03     | `memoria_punteros_arrays`              | Stack/heap, punteros, arrays, `span`, `new`/`delete`, gdb, cadenas C       |
 | 04     | `clases_raii_tests`                    | Clases, constructores, RAII, operadores, `<=>`, Catch2, `ctest`            |
 | 05     | `copia_movimiento_smart_pointers`      | Regla de 0/3/5, rvalues, `move`, `forward`, smart pointers, elisión        |
@@ -331,7 +331,10 @@ vocabulario de cppreference y del estándar; no es opcional.
 
 - Versión mínima `cmake_minimum_required(VERSION 3.28)`
 - **Target-based**: `target_link_libraries`, `target_include_directories`,
-  `target_compile_features`. Nunca variables globales `CMAKE_CXX_FLAGS` en starters
+  `target_compile_features`. Nunca `CMAKE_CXX_FLAGS` ni `CMAKE_CXX_STANDARD` en un
+  `CMakeLists.txt`; la única variable global admitida es `CMAKE_CXX_EXTENSIONS OFF`.
+  En `CMakePresets.json` sí: los sanitizers del preset `asan` van en `CMAKE_CXX_FLAGS`
+  porque son flags de configuración, no del proyecto
 - Dependencias con `FetchContent` y **`GIT_TAG` fijado a una versión exacta** (tag,
   nunca rama). Las versiones viven en `docs/politica-versiones.md`
 - Tests con `include(CTest)` + `catch_discover_tests(target)`

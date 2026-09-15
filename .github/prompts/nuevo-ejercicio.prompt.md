@@ -155,11 +155,10 @@ cmake --preset asan && cmake --build --preset asan && ctest --preset asan
 cmake_minimum_required(VERSION 3.28)
 project(ejercicio_{{MM}}_{{TEMA}} LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(item src/item.cpp)
+target_compile_features(item PUBLIC cxx_std_20)
 target_include_directories(item PUBLIC src)
 target_compile_options(item PRIVATE -Wall -Wextra -Wpedantic -Werror)
 

@@ -75,13 +75,17 @@ cmake_minimum_required(VERSION 3.28)
 # compilador de C, y fallaría en máquinas que solo tienen g++.
 project(hola_toolchain LANGUAGES CXX)
 
-# Estándar del lenguaje. Las tres líneas van juntas siempre:
-set(CMAKE_CXX_STANDARD 20)           # -std=c++20
-set(CMAKE_CXX_STANDARD_REQUIRED ON)  # error si el compilador no lo soporta, en vez de bajar a C++17
-set(CMAKE_CXX_EXTENSIONS OFF)        # -std=c++20, no -std=gnu++20 (sin extensiones de GCC)
+# Sin extensiones del compilador: -std=c++20, no -std=gnu++20. Es la única
+# variable global del archivo: no tiene equivalente por target.
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Un target ejecutable llamado "app", construido a partir de estos archivos.
 add_executable(app src/main.cpp)
+
+# Estándar del lenguaje, colgado del target: -std=c++20, y error si el compilador
+# no lo soporta. PUBLIC = también para quien enlace con este target (en la Semana 11,
+# cuando "app" use una biblioteca tuya, la biblioteca le exigirá C++20 sola).
+target_compile_features(app PUBLIC cxx_std_20)
 
 # Flags de warnings, colgados del target. PRIVATE = solo para compilar "app",
 # no para quien lo use (nadie usa un ejecutable, pero la costumbre importa).
@@ -169,7 +173,7 @@ la salida del programa, para que veas qué escribió en vez de lo esperado.
 | Construir dentro del directorio fuente (`cmake .`) | Llena la carpeta de `CMakeFiles/`, `Makefile`, `.o`; imposible limpiar; acaba en el repositorio | Siempre `-B build` o un preset. `build/` está en `.gitignore` |
 | `file(GLOB SOURCES src/*.cpp)` | CMake no se entera cuando añades un archivo nuevo: hay que reconfigurar a mano, y el error ("undefined reference") no dice eso | Listar los archivos explícitamente en `add_executable`. Cuando añadas uno, lo añades ahí. Es una línea |
 | Copiar un `CMakeLists.txt` de 2012 | `include_directories`, `link_libraries`, `CMAKE_CXX_FLAGS`… el CMake "de variables globales" que la documentación actual desaconseja | Si no ves `target_` delante de casi todo, es viejo. La referencia es [cmake.org/cmake/help/latest](https://cmake.org/cmake/help/latest/) |
-| Ignorar `CMAKE_CXX_EXTENSIONS OFF` | Sin él, GCC compila con `-std=gnu++20` y acepta extensiones (VLAs, `typeof`) que Clang y MSVC rechazan. Tu código "funciona" hasta que cambias de compilador | Las tres líneas del estándar van siempre juntas. Están en la plantilla |
+| Ignorar `CMAKE_CXX_EXTENSIONS OFF` | Sin él, GCC compila con `-std=gnu++20` y acepta extensiones (VLAs, `typeof`) que Clang y MSVC rechazan. Tu código "funciona" hasta que cambias de compilador | `set(CMAKE_CXX_EXTENSIONS OFF)` antes del primer `add_executable`. Está en la plantilla |
 
 ## 5. Trucos
 

@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.28)
 project(ejercicio_02_tipos_y_limites LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_EXTENSIONS OFF)   # -std=c++20, no -std=gnu++20
 
 add_executable(app src/main.cpp)
+target_compile_features(app PUBLIC cxx_std_20)
 target_compile_options(app PRIVATE -Wall -Wextra -Wpedantic -Werror)
 
 enable_testing()

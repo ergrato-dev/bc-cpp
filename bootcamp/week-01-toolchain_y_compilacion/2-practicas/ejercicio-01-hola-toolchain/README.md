@@ -202,7 +202,7 @@ cmake --preset asan && cmake --build --preset asan && ctest --preset asan
 | Síntoma | Causa | Solución |
 | --- | --- | --- |
 | `CMake Error: Could not create named generator Ninja` | Ninja no está instalado | `sudo apt install ninja-build`, o cambia el generador a `"Unix Makefiles"` en `CMakePresets.json` |
-| `error: 'format' is not a member of 'std'` | El compilador es anterior a GCC 13 / Clang 17, o falta `-std=c++20` | `g++ --version`. Si es < 13, sigue [`docs/setup.md`](../../../../docs/setup.md). Si es ≥ 13, comprueba que `CMakeLists.txt` tiene `CMAKE_CXX_STANDARD 20` |
+| `error: 'format' is not a member of 'std'` | El compilador es anterior a GCC 13 / Clang 17, o falta `-std=c++20` | `g++ --version`. Si es < 13, sigue [`docs/setup.md`](../../../../docs/setup.md). Si es ≥ 13, comprueba que `CMakeLists.txt` tiene `target_compile_features(app PUBLIC cxx_std_20)` |
 | `ctest` dice `No tests were found!!!` | Ejecutaste `ctest` desde `src/` o sin preset | Desde `starter/`, `ctest --preset debug` |
 | Un test falla con `Required regular expression not found` pero la salida parece correcta | Un espacio de más o de menos: los anchos de `format` son exactos | Ejecuta `./build/debug/app` y compara carácter a carácter con la tabla de este README |
 | Los tests pasan en `debug` pero al ejecutar no ves nada | Estás mirando el binario viejo | `cmake --build --preset debug` reconstruye; luego `./build/debug/app` |
