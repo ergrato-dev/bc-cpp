@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img"
+     aria-label="Arriba: un std::string llamado line posee un bloque de memoria con el texto add tornillo 12 y guarda su longitud, 15. Un std::string_view llamado command guarda solo dos números, un puntero al primer carácter y la longitud 3, y apunta al tramo add dentro del bloque del string, sin copiarlo. Abajo: cuando line muere, su bloque se libera; command sigue apuntando a memoria liberada y leerlo es comportamiento indefinido que ASan detecta.">
+  <title>std::string posee el texto; std::string_view solo lo mira</title>
+  <style>
+    .bg   { fill: #0d1117; }
+    .t    { font-family: Inter, Roboto, "Segoe UI", system-ui, sans-serif; }
+    .code { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; fill: #79c0ff; font-size: 13px; }
+    .h    { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+    .s    { font-size: 12px; fill: #8b949e; }
+    .lbl  { font-size: 12px; fill: #e6edf3; }
+    .obj  { fill: #21262d; stroke: #659ad2; stroke-width: 1.5; }
+    .objv { fill: #21262d; stroke: #d29922; stroke-width: 1.5; }
+    .heap { fill: #2a1a0e; stroke: #f0883e; stroke-width: 1.5; }
+    .heapd{ fill: none; stroke: #f85149; stroke-width: 1.5; stroke-dasharray: 5 3; }
+    .ch   { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .chv  { fill: #3b2a08; stroke: #d29922; stroke-width: 1; }
+    .cc   { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; font-size: 13px; fill: #e6edf3; }
+    .ok   { fill: #3fb950; }
+    .warn { fill: #d29922; }
+    .err  { fill: #f85149; }
+    .heapt{ fill: #f0883e; }
+    .ar   { stroke: #659ad2; stroke-width: 1.5; fill: none; marker-end: url(#mb); }
+    .arv  { stroke: #d29922; stroke-width: 1.5; fill: none; marker-end: url(#mw); }
+    .are  { stroke: #f85149; stroke-width: 1.5; fill: none; marker-end: url(#me); }
+  </style>
+  <defs>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#659ad2"/></marker>
+    <marker id="mw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d29922"/></marker>
+    <marker id="me" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f85149"/></marker>
+  </defs>
+  <rect class="bg" width="880" height="400" rx="12"/>
+  <text class="t h" x="440" y="34" text-anchor="middle">std::string posee el texto; std::string_view solo lo mira</text>
+  <text class="t s" x="440" y="54" text-anchor="middle">std::string line{"add tornillo 12"};   std::string_view command{line};   command = command.substr(0, 3);</text>
+
+  <!-- Objetos -->
+  <rect class="obj" x="40" y="86" width="208" height="66" rx="6"/>
+  <text class="code" x="50" y="106">std::string line</text>
+  <text class="cc" x="50" y="126">ptr  → bloque</text>
+  <text class="cc" x="50" y="144">size = 15</text>
+  <text class="t s" x="144" y="170" text-anchor="middle">dueño: reserva y libera</text>
+
+  <rect class="objv" x="40" y="196" width="208" height="66" rx="6"/>
+  <text class="code" x="50" y="216">std::string_view command</text>
+  <text class="cc" x="50" y="236">ptr  → bloque + 0</text>
+  <text class="cc" x="50" y="254">size = 3</text>
+  <text class="t s warn" x="144" y="280" text-anchor="middle">dos números; no posee nada</text>
+
+  <!-- Heap block -->
+  <text class="t s heapt" x="300" y="100">bloque en el heap, propiedad de line</text>
+  <rect class="heap" x="300" y="108" width="540" height="44" rx="6"/>
+  <rect class="chv" x="306" y="114" width="30" height="32" rx="3"/><text class="cc" x="321" y="136" text-anchor="middle">a</text>
+  <rect class="chv" x="340" y="114" width="30" height="32" rx="3"/><text class="cc" x="355" y="136" text-anchor="middle">d</text>
+  <rect class="chv" x="374" y="114" width="30" height="32" rx="3"/><text class="cc" x="389" y="136" text-anchor="middle">d</text>
+  <rect class="ch" x="408" y="114" width="30" height="32" rx="3"/><text class="cc" x="423" y="136" text-anchor="middle">␣</text>
+  <rect class="ch" x="442" y="114" width="30" height="32" rx="3"/><text class="cc" x="457" y="136" text-anchor="middle">t</text>
+  <rect class="ch" x="476" y="114" width="30" height="32" rx="3"/><text class="cc" x="491" y="136" text-anchor="middle">o</text>
+  <rect class="ch" x="510" y="114" width="30" height="32" rx="3"/><text class="cc" x="525" y="136" text-anchor="middle">r</text>
+  <rect class="ch" x="544" y="114" width="30" height="32" rx="3"/><text class="cc" x="559" y="136" text-anchor="middle">n</text>
+  <rect class="ch" x="578" y="114" width="30" height="32" rx="3"/><text class="cc" x="593" y="136" text-anchor="middle">i</text>
+  <rect class="ch" x="612" y="114" width="30" height="32" rx="3"/><text class="cc" x="627" y="136" text-anchor="middle">l</text>
+  <rect class="ch" x="646" y="114" width="30" height="32" rx="3"/><text class="cc" x="661" y="136" text-anchor="middle">l</text>
+  <rect class="ch" x="680" y="114" width="30" height="32" rx="3"/><text class="cc" x="695" y="136" text-anchor="middle">o</text>
+  <rect class="ch" x="714" y="114" width="30" height="32" rx="3"/><text class="cc" x="729" y="136" text-anchor="middle">␣</text>
+  <rect class="ch" x="748" y="114" width="30" height="32" rx="3"/><text class="cc" x="763" y="136" text-anchor="middle">1</text>
+  <rect class="ch" x="782" y="114" width="30" height="32" rx="3"/><text class="cc" x="797" y="136" text-anchor="middle">2</text>
+  <path class="ar" d="M250,120 L300,120"/>
+  <path class="arv" d="M250,232 C280,232 292,160 306,150"/>
+  <text class="t s warn" x="360" y="176">command ve "add": los 3 primeros, sin copiar</text>
+
+  <!-- Después -->
+  <line x1="40" y1="300" x2="840" y2="300" stroke="#30363d" stroke-width="1"/>
+  <text class="t lbl" x="40" y="322">Después: line muere (sale de su bloque, o era un temporal)</text>
+  <rect class="heapd" x="300" y="334" width="540" height="36" rx="6"/>
+  <text class="t s err" x="570" y="357" text-anchor="middle">bloque liberado: ya no es de nadie</text>
+  <rect class="objv" x="40" y="334" width="208" height="36" rx="6"/>
+  <text class="code" x="50" y="357">command → ???</text>
+  <path class="are" d="M250,352 L300,352"/>
+  <text class="t s err" x="440" y="390" text-anchor="middle">Leer command aquí es UB. El compilador no avisa; ASan: stack-use-after-scope o heap-use-after-free</text>
+</svg>

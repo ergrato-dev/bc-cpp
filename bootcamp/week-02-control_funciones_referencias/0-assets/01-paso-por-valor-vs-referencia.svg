@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" role="img"
+     aria-label="Tres formas de pasar un argumento a una función. Por valor: la función recibe una copia de hits en una caja nueva llamada counter; poner counter a cero deja hits en 42. Por referencia: counter es otro nombre de la misma caja; ponerlo a cero deja hits en 0. Por referencia constante: mismo alias sin copia, pero cualquier intento de escribir es un error de compilación.">
+  <title>Paso por valor, por referencia y por referencia constante</title>
+  <style>
+    .bg   { fill: #0d1117; }
+    .t    { font-family: Inter, Roboto, "Segoe UI", system-ui, sans-serif; }
+    .code { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; fill: #79c0ff; font-size: 13px; }
+    .h    { font-size: 15px; font-weight: 600; fill: #e6edf3; }
+    .s    { font-size: 12px; fill: #8b949e; }
+    .lbl  { font-size: 12px; fill: #e6edf3; }
+    .col  { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+    .box  { fill: #21262d; stroke: #659ad2; stroke-width: 1.5; }
+    .boxc { fill: #21262d; stroke: #d29922; stroke-width: 1.5; stroke-dasharray: 5 3; }
+    .val  { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; font-size: 16px; fill: #e6edf3; }
+    .ok   { fill: #3fb950; }
+    .warn { fill: #d29922; }
+    .err  { fill: #f85149; }
+    .ar   { stroke: #8b949e; stroke-width: 1.5; fill: none; marker-end: url(#m); }
+    .arw  { stroke: #d29922; stroke-width: 1.5; fill: none; marker-end: url(#mw); }
+  </style>
+  <defs>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e"/>
+    </marker>
+    <marker id="mw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d29922"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="880" height="420" rx="12"/>
+  <text class="t h" x="440" y="34" text-anchor="middle">¿Copio o miro? Tres firmas, tres resultados para el mismo argumento</text>
+  <text class="t s" x="440" y="54" text-anchor="middle">main declara int hits{42} y llama a reset(hits)</text>
+
+  <!-- Columna 1: por valor -->
+  <rect class="col" x="24" y="74" width="266" height="322" rx="10"/>
+  <text class="code" x="157" y="100" text-anchor="middle">void reset(int counter)</text>
+  <text class="t s" x="157" y="118" text-anchor="middle">por valor</text>
+  <text class="t lbl" x="44" y="152">main</text>
+  <rect class="box" x="44" y="160" width="100" height="44" rx="6"/>
+  <text class="code" x="94" y="178" text-anchor="middle">hits</text>
+  <text class="val" x="94" y="197" text-anchor="middle">42</text>
+  <path class="arw" d="M148,182 L184,182"/>
+  <text class="t s warn" x="166" y="172" text-anchor="middle">copia</text>
+  <text class="t lbl" x="190" y="152">reset</text>
+  <rect class="boxc" x="190" y="160" width="84" height="44" rx="6"/>
+  <text class="code" x="232" y="178" text-anchor="middle">counter</text>
+  <text class="val" x="232" y="197" text-anchor="middle">42</text>
+  <text class="code" x="157" y="240" text-anchor="middle">counter = 0;</text>
+  <rect class="box" x="44" y="258" width="100" height="44" rx="6"/>
+  <text class="code" x="94" y="276" text-anchor="middle">hits</text>
+  <text class="val" x="94" y="295" text-anchor="middle">42</text>
+  <rect class="boxc" x="190" y="258" width="84" height="44" rx="6"/>
+  <text class="code" x="232" y="276" text-anchor="middle">counter</text>
+  <text class="val" x="232" y="295" text-anchor="middle">0</text>
+  <text class="t s" x="157" y="336" text-anchor="middle">hits no se entera.</text>
+  <text class="t s warn" x="157" y="354" text-anchor="middle">-Wunused-but-set-parameter</text>
+  <text class="t s" x="157" y="372" text-anchor="middle">Bien para int, double, bool, char</text>
+
+  <!-- Columna 2: por referencia -->
+  <rect class="col" x="307" y="74" width="266" height="322" rx="10"/>
+  <text class="code" x="440" y="100" text-anchor="middle">void reset(int&amp; counter)</text>
+  <text class="t s" x="440" y="118" text-anchor="middle">por referencia</text>
+  <text class="t lbl" x="327" y="152">main</text>
+  <rect class="box" x="327" y="160" width="100" height="44" rx="6"/>
+  <text class="code" x="377" y="178" text-anchor="middle">hits</text>
+  <text class="val" x="377" y="197" text-anchor="middle">42</text>
+  <path class="ar" d="M478,182 L432,182"/>
+  <text class="t s" x="455" y="172" text-anchor="middle">alias</text>
+  <text class="t lbl" x="484" y="152">reset</text>
+  <text class="code" x="484" y="186">counter</text>
+  <text class="code" x="440" y="240" text-anchor="middle">counter = 0;</text>
+  <rect class="box" x="327" y="258" width="100" height="44" rx="6"/>
+  <text class="code" x="377" y="276" text-anchor="middle">hits</text>
+  <text class="val" x="377" y="295" text-anchor="middle">0</text>
+  <path class="ar" d="M478,280 L432,280"/>
+  <text class="code" x="484" y="284">counter</text>
+  <text class="t s" x="440" y="336" text-anchor="middle">Una sola caja, dos nombres.</text>
+  <text class="t s ok" x="440" y="354" text-anchor="middle">Sin copia. El original cambia.</text>
+  <text class="t s" x="440" y="372" text-anchor="middle">Para salidas y modificaciones</text>
+
+  <!-- Columna 3: const& -->
+  <rect class="col" x="590" y="74" width="266" height="322" rx="10"/>
+  <text class="code" x="723" y="100" text-anchor="middle">int f(const std::string&amp; s)</text>
+  <text class="t s" x="723" y="118" text-anchor="middle">por referencia constante</text>
+  <text class="t lbl" x="610" y="152">main</text>
+  <rect class="box" x="610" y="160" width="100" height="44" rx="6"/>
+  <text class="code" x="660" y="178" text-anchor="middle">line</text>
+  <text class="val" x="660" y="197" text-anchor="middle">"add 3 4"</text>
+  <path class="ar" d="M790,182 L715,182"/>
+  <text class="t s" x="756" y="172" text-anchor="middle">alias</text>
+  <text class="t lbl" x="756" y="152">f</text>
+  <text class="code" x="812" y="186" text-anchor="middle">s</text>
+  <text class="code" x="723" y="240" text-anchor="middle">s = "x";</text>
+  <rect class="box" x="610" y="258" width="100" height="44" rx="6"/>
+  <text class="code" x="660" y="276" text-anchor="middle">line</text>
+  <text class="val" x="660" y="295" text-anchor="middle">"add 3 4"</text>
+  <text class="t s err" x="790" y="284" text-anchor="middle">error</text>
+  <text class="t s" x="723" y="336" text-anchor="middle">Sin copia y sin poder escribir.</text>
+  <text class="t s err" x="723" y="354" text-anchor="middle">assignment of read-only reference</text>
+  <text class="t s" x="723" y="372" text-anchor="middle">La firma por defecto para leer algo grande</text>
+</svg>

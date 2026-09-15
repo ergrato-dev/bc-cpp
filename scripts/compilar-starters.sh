@@ -48,8 +48,10 @@ while IFS= read -r starter; do
     fi
     # ctest devuelve != 0 si hay tests que fallan; eso aquí es informativo.
     ctest --test-dir "$starter/build/$preset" --output-on-failure >"$log" 2>&1
-    passed=$(grep -oE '[0-9]+ tests passed' "$log" | grep -oE '^[0-9]+' || echo 0)
+    # ctest imprime "N% tests passed, F tests failed out of T" (con 100% no hay F).
     total=$(grep -oE 'out of [0-9]+' "$log" | grep -oE '[0-9]+$' || echo 0)
+    failed=$(grep -oE '[0-9]+ tests failed' "$log" | grep -oE '^[0-9]+' || echo 0)
+    passed=$((total - failed))
     if grep -qE 'SIGSEGV|SIGABRT|AddressSanitizer|UndefinedBehaviorSanitizer|ThreadSanitizer|runtime error:' "$log"; then
       echo "$starter [$preset]: 🔴 COMPILA · TESTS CRASHEAN: $(grep -m1 -E 'SIGSEGV|SIGABRT|Sanitizer|runtime error:' "$log")"
       fail=1

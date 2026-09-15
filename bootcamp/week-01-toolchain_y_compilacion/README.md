@@ -152,6 +152,6 @@ existe"), la tabla `🧯 Si algo sale mal` del ejercicio 01 cubre los casos habi
 
 | Anterior | Actual | Siguiente |
 | -------- | ------ | --------- |
-| — | **Semana 01** | Semana 02 (próximamente) |
+| — | **Semana 01** | [Semana 02 — Control de flujo, funciones y referencias](../week-02-control_funciones_referencias/README.md) |
 
 ← [Volver al inicio del bootcamp](../../README.md)

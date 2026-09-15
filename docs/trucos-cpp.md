@@ -25,3 +25,17 @@ Las semanas sin publicar no tienen sección.
 | Ver qué escribió el programa cuando un test falla | Los presets ya llevan `--output-on-failure`; si no, `ctest --preset debug --output-on-failure` |
 | Saber qué tipo dedujo `auto` | Provoca un error: `auto x{...}; x.no_existe();` y el compilador te dice el tipo en el mensaje |
 
+---
+
+## Semana 02 — Control de flujo, funciones y referencias
+
+| Truco | Cómo |
+| ----- | ---- |
+| Cazar un `if (x = 5)` antes de que muerda | Ya lo hace `-Wall` (`-Wparentheses`); con `-Werror` no compila. Si de verdad quieres asignar dentro de un `if`, dobla los paréntesis: `if ((x = f()))` |
+| Que el compilador vigile los `switch` | Un `switch` sobre un `enum class` sin `default` y sin algún valor dispara `-Wswitch` (en `-Wall`). Deja el `default` fuera a propósito y el compilador te avisará cuando añadas un valor al enum |
+| Detectar variables que tapan a otras | `-Wshadow` no está en `-Wall` ni en `-Wextra`. Añádelo a `target_compile_options` de tu proyecto: cada `int x` dentro de otro `int x` te avisará |
+| Índices de `vector` comprobados sin cambiar código | `-D_GLIBCXX_ASSERTIONS` en las opciones de compilación (libstdc++): `v[10]` sobre un vector de 3 aborta con `Assertion '__n < this->size()' failed` en vez de leer basura |
+| Probar un programa que lee `stdin` sin teclear | `printf 'add 3 4\nquit\n' \| ./build/debug/app`. Es exactamente lo que hacen los tests de esta semana |
+| Ver qué línea de entrada rompió el programa | `printf ... \| ./app` y, si falla, `printf ... \| head -n 2 \| ./app`: reduce la entrada hasta aislar la línea |
+| Convertir texto a número sin que un fallo cierre el programa | `std::istringstream iss{line}; if (!(iss >> n)) { /* inválido */ }`. `std::stoi` lanza una excepción con `"abc"`, y las excepciones llegan en la Semana 10 |
+| Saber si una función copia su argumento | Pon un `std::cout` en el constructor de copia... cuando sepas clases (Semana 04). Hoy: `-O0`, `gdb`, `break f` y `info args`: si es referencia, `gdb` muestra `(std::string &) @0x...` |
